@@ -10,6 +10,17 @@ function renderLicenseLink(license) {}
 // If there is no license, return an empty string
 function renderLicenseSection(license) {}
 
+// A function that returns an array of all the licenses offered by GitHub 
+function renderLicenseList() {
+  return [
+    `None`, `Apache License 2.0`, `GNU General Publice License v3.0`,
+    `MIT License`, `BSD 2-Clause "Simplified" License`, `BSD 3-Clause "New" or "Revised" License`,
+    `Boost Software License 1.0`, `Creative Commons Zero v1.0 Universal`, `Eclipse Public License 2.0`,
+    `GNU Affero General Public License v2.0`, `GNU Lesser General Public License v2.1`,
+    `Mozilla Public License 2.0`, `The Unlicense`
+  ];
+}
+
 // TODO: Create a function to generate markdown for README
 // data = {
 //   title,
@@ -39,28 +50,34 @@ function generateMarkdown(data) {
 6. [License](#license)
 7. [How to Contribute](#how_to_contribute)
 
-## [Features]()
+## Features
 ${data.features}
 
-## [Installation]()
+## Installation
 ${data.installation}
 
-## [Usage]()
+## Usage
 ${data.usage}
 
 ![Usage demo](${data.usageImg})
 
-## [Tests]()
+## Tests
 ${data.tests}
 
-## [Credits]()
+## Credits
 ${data.credits}
 
-## [License]()
+## License
 ${data.license}
 
-## [How to Contribute]()
-${data.contribute}`;
+## How to Contribute
+${data.contribute}
+
+# End
+`;
 }
 
-module.exports = generateMarkdown;
+module.exports = {
+  generateMarkdown,
+  renderLicenseList
+}
