@@ -51,9 +51,11 @@ const questions = [
         message: 'List your collaborators, if any, with links to their GitHub profiles:'
     },
     {
-        type: 'input',
+        type: 'list',
         name: 'license',
-        message: 'Choose a license for your project:'
+        message: 'Choose a license for your project:',
+        choices: generateMarkdown.renderLicenseList(),
+        loop: false
     },
     {
         type: 'input',
@@ -78,28 +80,28 @@ function writeToFile(fileName, data) {
 // User can pass filename to use
 function init(userFileName) {
     // Check if user supplied a filename
-    let thisFilePath = fsFolder + path.sep + fsFileName;
-    if (userFileName !== null && typeof userFileName === "string") {
-        userFileExtension = userFileName.split('.').pop();
-        if (userFileExtension === "md") {
-            thisFilePath = fsFolder + path.sep + userFileName + userFileExtension;
-        } else {
-            return new Error(`File extension must be ".md".`);
-        }
-    }
+    // let thisFilePath = fsFolder + '/' + fsFileName; // set to default
+    // if (userFileName !== null && typeof userFileName === "string") {
+    //     userFileExtension = userFileName.split('.').pop();
+    //     if (userFileExtension === "md") {
+    //         thisFilePath = fsFolder + '/' + userFileName + userFileExtension; // set dynamically
+    //     } else {
+    //         return new Error(chalk.black.bgRed(`File extension must be ".md".`));
+    //     }
+    // }
     inquirer.prompt(questions)
-    .then((answer) => {
-        try {
-            const data = generateMarkdown(answer);
-        } catch(err) {
-            console.error(chalk.black.bgRed("Error generating markdown: ", err));
-        }
-        try {
-            writeToFile(thisFilePath, data); // <-- use thisFilePath here <--
-        } catch (err) {
-            console.error(chalk.black.bgRed("Error writing file: ", err));
-        }
-    });
+        .then((answer) => {
+            // try {
+                const data = generateMarkdown.generateMarkdown(answer);
+            // } catch (err) {
+            //     console.error(chalk.black.bgRed("Error generating markdown: "), err);
+            // }
+            // try {
+                writeToFile("output.md", data); // <-- use thisFilePath here <--
+            // } catch (err) {
+            //     console.error(chalk.black.bgRed("Error writing file: "), err);
+            // }
+        });
 }
 
 // Function call to initialize app
