@@ -6,7 +6,7 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Use Chalk package to color console.log
-// Usage: console.log(chalk.blue('Hello world!'));
+// Usage: console.log(chalk.blue.bgWhite('Hello world!'));
 const chalk = require('../node_modules/chalk');
 
 const newLine = `
@@ -36,7 +36,6 @@ function renderLicenseInfo(license) {
 // If there is no usageImg, console log a warning and return an empty string
 function renderUsageImg(usageImg) {
   if (!usageImg) {
-    console.error(chalk.black.bgYellowBright(` Warning: No usage demo image/video `));
     return ``;
   }
   return `See this usage demo:${newLine + newLine}![Usage demo](${encodeURI(usageImg)})`;
@@ -85,32 +84,7 @@ function renderLicenseList() {
   ];
 }
 
-// TODO: Create a function to generate markdown for README
-// data = 
-// {
-//     title: 'oinqf',
-//     subtitle: 'finqr',
-//     license: 'BSD 2-Clause "Simplified" License', 
-//     description: [ { item: 'fo real' }, { item: 'yeah fo reeeeeeeal' } ],
-//     installation: [ { item: 'install it yo' } ],  
-//     usage: [
-//       { item: 'use it like this', imageUrl: './assets/img/demo1.jpg' },
-//       {
-//         item: 'and then like this bruh',
-//         imageUrl: './assets/img/demo2.jpg'        
-//       }
-//     ],
-//     contribute: [ { item: 'fork and sub PRs pls' } ],
-//     tests: [ { item: "run 'em goooood" } ],       
-//     credits: [
-//       {
-//         collaboratorName: 'Mark Drummond',        
-//         collaboratorGithub: 'mjamesd'
-//       }
-//     ],
-//     questionsGitHub: 'mjamesd',     
-//     quetionsEmail: 'mjamesd@gmail.com'
-//   }
+// Function to generate markdown for README
 function generateMarkdown(data) {
   let titleBlock = `# ${data.title}`;
   titleBlock += newLine;

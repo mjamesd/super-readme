@@ -147,10 +147,6 @@ const questions = [
     },
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-}
-
 // Initialization fuction
 // User can pass filename to use
 function init(userFileName = null) {
@@ -171,7 +167,6 @@ function init(userFileName = null) {
     console.warn(chalk.black.bgYellowBright(`Saving file as "${thisFilePath}" `));
     inquirer.prompt(questions)
         .then((answers) => {
-            console.log(answers);
             const data = generateMarkdown.generateMarkdown(answers);
             // <-- use thisFilePath here <--
             fs.writeFile(thisFilePath, data, (err) =>
